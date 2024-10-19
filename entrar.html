@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="icon" type="image/png" sizes="16x16" href="favicon.png">
+  <meta name="msapplication-TileColor" content="#ffffff">
+  <meta name="theme-color" content="black">
+  <title>Iniciar secção</title>
+  <link rel="stylesheet" href="Style.css">
+<style>
+form {
+      border-radius: 10px;
+      text-align:center;
+      min-height: 335px;
+      max-height:500px;
+      width:350px;
+      border-image: 10px;
+      margin: auto;
+      border-color: black;
+      box-shadow: 2px 2px 4px #00002b;
+      background-color: #ffffff;
+      margin-top:20%;
+    }
+    button{
+      height:40px;
+      width:80%;
+      color: #fff;
+      background-color:black;
+      border-radius:5px;
+      text-align: center;
+    }
+    input {
+      height: 30px;
+      text-align: center;
+      width:80%;
+      border:solid;
+      border-radius:5px;
+      margin-top:10px;
+      font-family: Times New Roman;
+    }
+    button:hover{
+    background-color:#2e2e2e;
+    }
+    input:hover{
+     border-color:#c96ce4;
+    }
+        #numero{
+      margin-left:30px;
+      display:none;
+    }
+    #trocar{
+        margin-top:12px;
+        color:#424242;
+        border:none;
+        height:20px;
+        text-align:left;
+        margin-left:12%;
+        font-size:14px;
+    }
+    #saida{
+        margin-top:12px;
+        text-align:left;
+        margin-left:30px;
+        font-size:15px;
+        display:none;
+        border:none;
+        height:30px;
+        text-align: center;
+        background:none;
+        width:80%;
+    }
+    .entrar{
+        margin-top:20px;
+        width:80%;
+    }
+</style>
+</head>
+<body>
+  <form>
+    <br>
+    <h3>Iniciar secção</h3>
+      <input placeholder="Email" onclick="interagir"type="email" id="email" required="">
+      <input placeholder="Numero"onclick="interagir" type="number" id="numero" required="">
+      <div id="trocar" onclick="trocar()" >Mudar email para numero</div>
+      <input placeholder="Senha"onclick="interagir" type="password" id="senha"required="">
+      <br>
+      <button class="entrar" onclick="analizar()" type="button">Entrar</button>
+      <div id="proposta">
+        Se falhares nos dados, actualize a pagina.
+      </div>
+      <div id="saida" >
+      <a href="paginaprincipal.html">ir para a pagina principal</a>
+      </div>
+  </form>
+  <script>
+ var senha1 = document.getElementById("senha");
+  var proposta = document.getElementById("proposta");
+ var email1=document.getElementById("email");
+ var numero1=document.getElementById("numero");
+ var texto=document.getElementById("trocar");
+ function trocar(){
+  if(numero1.style.display==="none" || numero1.style.display===""){
+    numero1.style.display="block";
+    email1.style.display="none";
+    texto.innerHTML="Mudar numero para email";
+  } else {
+    numero1.style.display="none";
+    email1.style.display="block"; 
+    email1.style.margin="0 30px"
+    texto.innerHTML="Mudar email para numero";
+  }
+}
+function analizar(){
+  var email = email1.value;
+  var numero = numero1.value;
+  proposta.style.display="none";
+  var senha=senha1.value;
+   var saida=document.getElementById("saida");
+  if((senha === '12345' && email === 'convidado@gmail.com') || (senha === '12345' && numero === '900000000')){
+    const nome="JJK";
+    if(nome){
+       numero1.style.color="green";
+    email1.style.color="green";
+    senha1.style.color="green"
+      saida.style.display="block";
+    }
+  } else {
+    saida.style.display="block";
+    saida.style.color="red";
+    senha1.style.color="red";
+    numero1.style.color="red";
+    email1.style.color="red";
+    saida.innerHTML="Conta não encontrada";
+  }
+}
+function interagir(){
+   senha1.style.color="black";
+    numero1.style.color="black";
+    proposta.style.display="none";
+    email1.style.color="blac";
+}
+  </script>
+</body>
+</html>

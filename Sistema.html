@@ -1,0 +1,259 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Resolução de Sistemas de Equações do 3º grau</title>
+      <meta name="msapplication-TileColor" content="#ffffff">
+    <meta name="theme-color" content="#ffffff">
+    <title>https:JJK_Programming/CalculadoraInformatica</title>
+    <link rel="stylesheet" href="Style.css">
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 20px;
+    }
+    h1 {
+      text-align: center;
+    }
+    .container {
+      max-width: 400px;
+      margin: auto;
+      background-color: #f9f9f9;
+      padding: 20px;
+      border-radius: 5px;
+      box-shadow: 0 0 10px rgba(0,0,0,0.1);
+    }
+    input[type="number"] {
+      width: 100%;
+      padding: 8px;
+      margin: 5px 0;
+      box-sizing: border-box;
+    }
+    .button2{
+      width: 100%;
+      background-color:black;
+      color: white;
+      border: none;
+      cursor: pointer;
+    }
+    .result {
+      margin-top: 10px;
+      border-top: 1px solid #ddd;
+      padding-top: 10px;
+    }
+  </style>
+</head>
+<body>
+<header>
+      <button id="button">
+        <div class="barras">
+          <div class="traco"></div>
+          <div class="traco2"></div>
+          <div class="traco3"></div>        
+        </div>
+      </button>
+      <nome style="font-size:20px;margin-left:45px;font-family:Times New Roman;">
+        <strong>
+          <jjk style="color:#723df7;">JJK</jjk><pro style="color:#7521dd;">_Pro</pro><gram style="color:#ac56f6;">gram</gram><ming style="color:#d46def;">ming</ming>
+        </strong>
+      </nome>
+    </header>
+    <div class="suporte_menu" id="suporte_menu">
+      <div id="menu">
+      <a class="link1" href="paginaprincipal.html">Pagina principal</a>
+      <div id="menu1" class="menu1">Sistemas
+      </div>
+     <div class="submenu" id="submenu1">Informaticos
+     <br> 
+    <a class="link" href="endereco.html"id="entrada1">Identificador de indereço IP</a>
+    <a class="link" id="entrada2" href="Conversor.html">Conversor de Sistema de num...</a>
+    <a class="link" href="Executor.html"id="entrada11">J Visual Code Studio</a>
+     <a class="link" id="entrada10" href="J.Ai.html"> Assistente J.AI</a>
+    </div>
+    <div class="submenu" id="submenu2">Matemáticos<br>
+       <a class="link" target="_blank" href="Sistema.html"id="entrada3">Calculadora de sistema de equação</a>
+        <a class="link" target="_blank" id="entrada4" href="Igrau.html">Calculadora de equaçãa do Iº grau</a>
+        <a class="link" target="_blank" href="IIgrau.html"id="entrada5">Calculadora de quação do IIºgrau</a>
+        <a target="_blank" class="link" id="entrada6" href="3grau.html">Calculadora de equação do IIIºgrau</a>
+        <a target="_blank" class="link" id="entrada7" href="Resto.html">Resto da divisão</a></div>
+        <a class="link1" href="Anexos.html">Anexos</a>
+        <div id="menu2" class="menu">Redes sociais
+        </div>
+         <div class="submenu" id="submenu4">Páginas
+         <a class="link" target="_blank" id="entrada8" href="https://t.me/jjk_programming">Telegram</a> 
+          <a class="link" target="_blank" id="entrada9" href="https://whatsapp.com/channel/0029VajHaxOJENy7lWsrA21v">WhatsApp</a>
+        </div>
+         <a  target="_blank" class="link2" id="submenu5" href="https://t.me /o_que_achas">Comunidade (no Telegram)</a>
+         <div class="menu" id="menu3">
+               Apps e ficheiros de apoio
+          <div class="submenu" id="submenu6">Indisponiveis no momento
+         </div>
+        </div>
+          <a class="link1" href="entrar.html">Mudar conta</a>
+     </div>
+     <br>
+    </div>
+    <br>
+    <br>
+    <main onclick="fechar_menu()">
+  <div class="container">
+    <h1>Resolução de Sistemas de Equações</h1>
+      <p>
+        1 equação
+      </p>
+      <input type="number" id="a1" placeholder="Valor do coeficiente de x (a)" required>
+      <input type="number" id="b1" placeholder="Valor do coeficiente de y (b)" required>
+      <input type="number" id="c1" placeholder="Valor do termo indendente (c)" required>
+     <p>
+        2 equação
+      </p>
+      <input type="number" id="a2" placeholder="Valor do coeficiente de x (a)" required>
+      <input type="number" id="b2" placeholder="Valor do coeficiente de y (b)" required>
+      <input type="number" id="c2" placeholder="Valor do termo indendente (c)" required>
+    <br>
+      <button class="button2" onclick="calcular()">Resolver</button>
+      <br>
+      <p class="result" id="res"></p>
+  </div>
+  <script>
+function calcular() {
+  // Captura os valores dos inputs
+  var a1 = Number(document.getElementById("a1").value);
+  var b1 = Number(document.getElementById("b1").value);
+  var c1 = Number(document.getElementById("c1").value);
+  var a2 = Number(document.getElementById("a2").value);
+  var b2 = Number(document.getElementById("b2").value);
+  var c2 = Number(document.getElementById("c2").value);
+  
+  // Calcula o determinante
+  var det = a1 * b2 - a2 * b1;
+  
+  // Verifica se o determinante é zero
+  if (det === 0) {
+    document.getElementById("res").innerHTML = "O sistema não tem uma solução única ou tem infinitas soluções.";
+    return;
+  }
+  
+  // Calcula os valores de x e y usando o método de Cramer
+  var x = (c1 * b2 - c2 * b1) / det;
+  var y = (a1 * c2 - a2 * c1) / det;
+  
+  // Exibe os resultados
+  document.getElementById("res").innerHTML = "O valor de x = " + x.toFixed(2) + " e y = " + y.toFixed(2);
+}
+function fechar_menu(){
+            var suporte_menu=document.getElementById("suporte_menu");
+            suporte_menu.style.display='none';
+        }
+        var entrada1=document.getElementById("entrada1");
+        var entrada2=document.getElementById("entrada2");
+        var entrada3=document.getElementById("entrada3");
+        var entrada4=document.getElementById("entrada4");
+        var entrada5=document.getElementById("entrada5");
+        var entrada6=document.getElementById("entrada6");
+        var entrada7=document.getElementById("entrada7");
+        var entrada8=document.getElementById("entrada8");
+        var entrada9=document.getElementById("entrada9");
+        var entrada10=document.getElementById("entrada10");
+        var entrada11=document.getElementById("entrada11");
+        var submenu1=document.getElementById("submenu1");
+        var submenu2=document.getElementById("submenu2");
+        var submenu3=document.getElementById("submenu3");
+        var submenu4=document.getElementById("submenu4");
+        var submenu5=document.getElementById("submenu5");
+        var submenu6=document.getElementById("submenu6");
+        
+document.getElementById('button').addEventListener('click', function() {
+  var suporte_menu=document.getElementById("suporte_menu");
+   suporte_menu.style.display='block';
+  var menu= document.getElementById("menu");
+            if (menu.style.display === 'none' || menu.style.display === '') {
+             menu.style.display = 'block';
+                submenu1.style.display = 'none';
+                submenu2.style.display = 'none';
+                submenu3.style.display = 'none';
+                submenu4.style.display = 'none';
+                submenu5.style.display = 'none';
+            } else {
+             menu.style.display = 'none';
+            suporte_menu.style.display='none';
+            }
+        });
+        document.getElementById('menu1').addEventListener('click', function() {
+            if (submenu1.style.display === 'none' || submenu1.style.display === '' || submenu2.style.display === 'none' || submenu2.style.display === '') {
+                submenu1.style.display = 'block';
+                submenu2.style.display = 'block';
+                submenu11.style.display = 'block';
+                submenu10.style.display = 'block';
+            } else {
+                submenu1.style.display = 'none';
+                submenu2.style.display = 'none';
+                submenu11.style.display = 'none';
+                submenu10.style.display = 'none';
+            }
+        });
+        //para submenu1
+        document.getElementById("submenu1").addEventListener('click', function() {
+        if (entrada1.style.display === 'none' || entrada1.style.display === '') {
+           entrada1.style.display ='block';
+           entrada2.style.display = 'block';
+           entrada11.style.display ='block';
+           entrada10.style.display = 'block';
+            } else {
+            entrada1.style.display = 'none';
+            entrada2.style.display = 'none';
+            entrada10.style.display = 'none';
+            entrada11.style.display = 'none';
+            }
+        });
+        // para submenu2
+        document.getElementById("submenu2").addEventListener('click', function() {
+        if (entrada3.style.display === 'none' || entrada3.style.display === '') {
+             entrada3.style.display ='block';
+            entrada4.style.display = 'block';
+            entrada5.style.display = 'block';
+             entrada6.style.display = 'block';
+             entrada7.style.display = 'block';
+            } else {
+             entrada4.style.display = 'none';
+             entrada3.style.display = 'none';
+            entrada5.style.display = 'none';
+             entrada7.style.display = 'none';
+            entrada6.style.display = 'none';
+       } });
+        //para redes sociais
+        document.getElementById('menu2').addEventListener('click', function() {
+            if (submenu4.style.display === 'none' || submenu4.style.display === '' ){
+                submenu4.style.display = 'block';
+                submnu5.style.display = 'block';
+            } else {
+                submenu4.style.display = 'none';
+                submenu5.style.display = 'none';
+            }
+        });
+         submenu4.addEventListener('click', function() {
+            if (entrada8.style.display === 'none' || entrada8.style.display === '') {
+                entrada8.style.display = 'block';
+                entrada9.style.display = 'block';
+            } else {
+                entrada8.style.display = 'none';
+                entrada9.style.display = 'none';
+            }
+        });
+          document.getElementById("menu3").addEventListener('click', function() {
+        if (submenu6.style.display === 'none' ||  submenu6.style.display === '') {
+            submenu6.style.display ='block';
+            } else {
+             submenu6.style.display = 'none';
+            }
+        });
+      </script>
+      <br>
+      <br>
+      <footer>
+      &copy; 2024 JJK_Programming
+    </footer>
+    </main>
+  </body>
+</html>

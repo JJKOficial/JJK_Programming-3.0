@@ -1,0 +1,340 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="icon" type="image/png" sizes="16x16" href="favicon.png">
+  <meta name="msapplication-TileColor" content="#ffffff">
+  <meta name="theme-color" content="black">
+  <title>Assistente J.AI</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+  <link rel="stylesheet" href="Style.css">
+</head>
+ <header>
+      <button id="button">
+        <div class="barras">
+          <div class="traco"></div>
+          <div class="traco2"></div>
+          <div class="traco3"></div>        
+        </div>
+      </button>
+      <nome style="font-size:20px;margin-left:45px;font-family:Times New Roman;">
+        <strong>
+          <jjk style="color:#723df7;">JJK</jjk><pro style="color:#7521dd;">_Pro</pro><gram style="color:#ac56f6;">gram</gram><ming style="color:#d46def;">ming</ming>
+        </strong>
+      </nome>
+    </header>
+    <div class="suporte_menu" id="suporte_menu">
+      <div id="menu">
+      <a class="link1" href="paginaprincipal.html">Pagina principal</a>
+      <div id="menu1" class="menu1">Sistemas
+      </div>
+     <div class="submenu" id="submenu1">Informaticos
+     <br> 
+    <a class="link" href="endereco.html"id="entrada1">Identificador de indereço IP</a>
+    <a class="link" id="entrada2" href="Conversor.html">Conversor de Sistema de num...</a>
+    <a class="link" href="Executor.html"id="entrada11">J Visual Code Studio</a>
+     <a class="link" id="entrada10" href="J.Ai.html"> Assistente J.AI</a>
+    </div>
+    <div class="submenu" id="submenu2">Matemáticos<br>
+       <a class="link" target="_blank" href="Sistema.html"id="entrada3">Calculadora de sistema de equação</a>
+        <a class="link" target="_blank" id="entrada4" href="Igrau.html">Calculadora de equaçãa do Iº grau</a>
+        <a class="link" target="_blank" href="IIgrau.html"id="entrada5">Calculadora de quação do IIºgrau</a>
+        <a target="_blank" class="link" id="entrada6" href="3grau.html">Calculadora de equação do IIIºgrau</a>
+        <a target="_blank" class="link" id="entrada7" href="Resto.html">Resto da divisão</a></div>
+        <a class="link1" href="Anexos.html">Anexos</a>
+        <div id="menu2" class="menu">Redes sociais
+        </div>
+         <div class="submenu" id="submenu4">Páginas
+         <a class="link" target="_blank" id="entrada8" href="https://t.me/jjk_programming">Telegram</a> 
+          <a class="link" target="_blank" id="entrada9" href="https://whatsapp.com/channel/0029VajHaxOJENy7lWsrA21v">WhatsApp</a>
+        </div>
+         <a  target="_blank" class="link2" id="submenu5" href="https://t.me /o_que_achas">Comunidade (no Telegram)</a>
+         <div class="menu" id="menu3">
+               Apps e ficheiros de apoio
+          <div class="submenu" id="submenu6">Indisponiveis no momento
+         </div>
+        </div>
+          <a class="link1" href="entrar.html">Mudar conta</a>
+     </div>
+     <br>
+    </div>
+        <br>
+        <br>
+        <main onclick="fechar_menu()">
+<body class="body">
+    <p class="caixaM3" style="margin;nane">
+    Olá! bem vindo ou   <strong>
+          <jjk style="color:#723df7;">JJK</jjk><pro style="color:#7521dd;">_Pro</pro><gram style="color:#ac56f6;">gram</gram><ming style="color:#d46def;">ming</ming>
+        </strong>, eu sou o   <strong>
+          <jjk style="color:#723df7;">J</jjk><pro style="color:#7521dd;">.</pro><gram style="color:#ac56f6;">A</gram><ming style="color:#d46def;">I</ming>
+        </strong>
+  </p>
+  <p class="caixaM3" style="margin;nane">
+    Por vezes, não aceito questão com erros de escrita ou questões fora do programa, por favor, faça uma questão de cada vez.
+  </p>
+  <p id="corpo">
+  </p>
+    <br>
+    <br>
+        <br>
+    <br>
+    <br>
+    <footer class="footer" style="text-align:left;">
+      <input placeholder="Escreva sua pergunta aqui." class="pergunta" id="valor"><button id="startBtn"><i class="fas fa-microphone"></i><span id="btnText" ></span></button>
+      <button class="AI"  onclick="analizar()">Enviar</button>
+    </footer>
+  </main>
+  <script>
+    // Função para reconhecimento de voz
+    const SpeechRecognition = window.SpeechRecognition || window.webkitSpeechRecognition;
+    if (!SpeechRecognition) {
+      alert('Seu navegador não suporta a API de reconhecimento de voz.');
+    } else {
+      const recognizer = new SpeechRecognition();
+      recognizer.lang = 'pt-BR';
+      recognizer.interimResults = false;
+      recognizer.maxAlternatives = 1;
+
+      const startBtn = document.getElementById('startBtn');
+      const btnText = document.getElementById('btnText');
+      const output = document.getElementById('valor');
+      let isRecognizing = false;
+
+      recognizer.addEventListener('result', (event) => {
+        const transcript = event.results[0][0].transcript;
+        output.value = transcript;
+      });
+
+      recognizer.addEventListener('error', (event) => {
+        console.error('Erro no reconhecimento de voz:', event.error);
+        isRecognizing = false;
+        alert("Pressione sem largar para falar");
+      });
+
+      const startRecognition = () => {
+        if (!isRecognizing) {
+          recognizer.start();
+          isRecognizing = true;
+        }
+      };
+
+      const stopRecognition = () => {
+        if (isRecognizing) {
+          recognizer.stop();
+          isRecognizing = false;
+        }
+      };
+
+      startBtn.addEventListener('mousedown', startRecognition);
+      startBtn.addEventListener('mouseup', stopRecognition);
+      startBtn.addEventListener('mouseleave', stopRecognition);
+      startBtn.addEventListener('touchstart', startRecognition);
+      startBtn.addEventListener('touchend', stopRecognition);
+     }
+    // Função para chat
+     function analizar() {
+      var per = document.getElementById("valor").value;
+      var p = per.toLowerCase();
+      var novodiv = document.createElement("p");
+      novodiv.type = "text";
+      novodiv.innerHTML = p;
+      novodiv.classList.add("caixaM1");
+      var chatContainer = document.getElementById("corpo");
+      chatContainer.appendChild(novodiv);
+      var re = document.createElement("p");
+      re.type = "text";
+      re.classList.add("caixaM2");
+      chatContainer.appendChild(re);
+      if (p.includes("bom dia") || p.includes("boa tarde") || p.includes("ola") || p.includes("olá") || p.includes("oi")) {
+        re.innerHTML = "Olá! em que posso ajuda-lo?";
+        document.getElementById("valor").value = "";
+      } else if (p.includes("como estas") || p.includes("como estás") || p.includes("como vais") || p.includes("como vai") || p.includes("como te sentes") || p.includes("tens estado") || p.includes("estas bem") || p.includes("estás bem") || p.includes("é como")) {
+        re.innerHTML = "Estou bem, obrigado por perguntar, e como você esta.";
+        document.getElementById("valor").value = "";
+      } else if (p.includes("são") && p.includes("que") && (p.includes("minuto") || p.includes("segundo")||p.includes("hora") )){
+        let hoje= new Date();
+        let horas= hoje.getHours().toString().padStart(2,'0');
+        let minutos= hoje.getMinutes().toString().padStart(2,'0');
+        re.innerHTML="ja são "+horas+" : "+minutos;
+        document.getElementById("valor").value = "";
+      }else if ((p.includes("qual")  || p.includes("que"))&&( (p.includes("data de") && p.includes("hoje"))||p.includes("dia") )){
+        let hoje= new Date();
+        let ano= hoje.getFullYear();
+        let mes= hoje.getMonth().toString().padStart(2,'0');
+        let dia= hoje.getSeconds().toString().padStart(2,'0');
+        re.innerHTML=" Hoje são: "+dia+" / "+mes+" / "+ano;
+        document.getElementById("valor").value = "";
+      }
+      else if (p.includes("tens") || p.includes("teus") || p.includes("teu") || p.includes("seu")|| p.includes("sentes") || p.includes("ficas")|| p.includes("ficaste")|| p.includes("seus") && (p.includes("sentimento") || p.includes("sentimentos")|| p.includes("nervoso")|| p.includes("raiva")|| p.includes("amor")|| p.includes("pena")|| p.includes("dor"))) {
+        re.innerHTML = "Sou uma Inteligência Artificial po isso não tenho sentimentos, fui criado simplesmente para ajudar os usuarios do JJK_Programming.";
+        document.getElementById("valor").value = "";
+      } else if (p.includes("esta bem") || p.includes("está bem") || p.includes("ok")) {
+        re.innerHTML = "Ok, estarei aqui para ajudar.";
+        document.getElementById("valor").value = "";
+      } else if ((p.includes("qual") || p.includes("que")) && p.includes("linguagem") && (p.includes("te") || p.includes("foste")) && (p.includes("progamado") || p.includes("criado") || p.includes("criou") || p.includes("criaram") || p.includes("programadoram") || p.includes("escreveram") || p.includes("escreveu") || p.includes("escrito") || p.includes("escrita"))) {
+        re.innerHTML = "Fui escrito em JS, ou seja sou a primeira inteligência artificial escrita em Javascript(JS) na parte logica e HTML + CSS no grafico.";
+        document.getElementById("valor").value = "";
+      } else if (((p.includes("o") || p.includes("os") || p.includes("tens")) || (p.includes("teus") || p.includes("seus") || p.includes("seu") || p.includes("teu"))) && ((p.includes("erros") || p.includes("erro")))) {
+        re.innerHTML = "Sendo eu uma linguagem artificial limimitada do JJK_Programming, eu posso posssuir erros, para solucionar basta inviares um SMS/mensagem para as redes sociais do JJK_Programming ja sitados no pagina principal na seccão 'siga-nos', mas recomendadamente do Facebook.";
+        document.getElementById("valor").value = "";
+      } else if (p.includes("estou bem") || p.includes("estas bem") || p.includes("vou bem") || p.includes("também") || p.includes("tambem") || p.includes("feliz") || p.includes("bem disposto") || p.includes("alegre") || p.includes("animado") || p.includes("com energia") || p.includes("energetico") || p.includes("energético") || p.includes("muito bem")) {
+        re.innerHTML = "Bom saber, se quiseres saber algo sobre o site basta perguntar.";
+        document.getElementById("valor").value = "";
+      } else if (p.includes("estou mal") || p.includes("estas mal") || p.includes("vou mal") || p.includes("mal disposto") || p.includes("normal") || p.includes("indo aos poucos") || p.includes("pessimo") || p.includes("péssimo") || p.includes("mais ou menos") || p.includes("+ ou -") || p.includes("doente") || p.includes("dolorido") || p.includes("partido") || p.includes("cansado") || p.includes("com dor") || p.includes("infeliz") || p.includes("não estou") || p.includes("aborecido") || p.includes("desanimado")) {
+        re.innerHTML = "Espero que melhore, se quiseres saber algo sobre o site basta perguntar.";
+        document.getElementById("valor").value = "";
+      } else if (p.includes("obrigado") || p.includes("obrigada") || p.includes("agradeço") || p.includes("estou grato") || p.includes("estou grata") || p.includes("agradeco")) {
+        re.innerHTML = "De nada, estarei aqui para ajudar no que precisares.";
+        document.getElementById("valor").value = "";
+      } else if (p.includes("teu nome") || p.includes(" seu nome") || p.includes("te chamar") || p.includes("quem é você") || p.includes("quem es tu") || p.includes("de onde es") || p.includes("tu es") || p.includes("te chamas") || p.includes("quem e você") || p.includes("você é quem")) {
+        re.innerHTML = "Meu nome é <titulo class='titulo'><j>J</j><k>.</k><underline>A</underline>I</titulo>, abreviatura de <titulo class='titulo'><j>JJk</j><k>_Pro</k><underline>gram</underline>ming</titulo><titulo class='titulo'><k>.</k><underline>A</underline>I</titulo> ( a Inteligência Artificial limiada do site).";
+        document.getElementById("valor").value = "";
+      } else if (p.includes("teu criador") || p.includes("seu criador") || p.includes("seus criadores") || p.includes("te criou") || p.includes("teus criadores") || p.includes("lhe criou")) {
+        re.innerHTML = "Fui criado pelo programmador JJK, o mesmo que criou e fundou o JJK_Programming.";
+        document.getElementById("valor").value = "";
+      } else if (p.includes("quando te criaram") || p.includes("quando te criou") || p.includes("quando foste criado") || p.includes("que te criaram") || p.includes("é que te criou") || p.includes("foste criado")) {
+        re.innerHTML = "Fui criado no ano de 2024 num dispositivo movel ";
+        document.getElementById("valor").value = "";
+      } else if (p.includes("jjkprogramming") || p.includes("jjk_programming") || p.includes("objectivos") || p.includes("objetivos") || p.includes("objectivo") || p.includes("objetivo") || p.includes("serve o") || p.includes("fala") &&( p.includes("site"))) {
+        re.innerHTML = "O JJK_Programming ('JJK programando' ou também 'programando com JJK') é um sistema criado para oferecer suporte e recursos para informáticos que desejam aprender e aprimorar suas habilidades e não só.";
+        document.getElementById("valor").value = "";
+      } else if (p.includes("simbolo") || p.includes("a marca") || p.includes("repesentado") || p.includes("favicon") || p.includes("representada") || p.includes("infinito") || p.includes("logotipo") || p.includes("logo")) {
+        re.innerHTML = "A simbolo, marca ou logotipo do JJK_Programming é o infinito, pois este representa o conhecimento (como se diz, 'O conhecimento e ilimitado ou infinito, iso e, todos os dias aprendemos e ninguem sabe tudo').";
+        document.getElementById("valor").value = "";
+      } else if (p.includes("cores") || p.includes("cor") || p.includes("tema")) {
+        re.innerHTML = "A site do JJK_Programming tem estas cores, pois são cores menos utilizados nos sites representa o conhecimento (como o simbolo infinito são varios, mas com esta cor, so o JJKProgramming possui, a não ser que copiem), e com este tema predefinido, para melhor aparencia do site.";
+        document.getElementById("valor").value = "";
+      } else if (p.includes("anexos") || p.includes("anexo")) {
+        re.innerHTML = "O anexo do JJK_Programming possui a politica de privacidade, condições de uso e objectivos do site.";
+        document.getElementById("valor").value = "";
+      } else if (p.includes("vs") || p.includes("code")) {
+        re.innerHTML = "O JJK VS Code possui um terminal onde podes executar programas em HTML.";
+        document.getElementById("valor").value = "";
+      } else if (p.includes("onde estas") || p.includes("onde estás") || p.includes("aonde estás") || p.includes("aonde estas") || p.includes("aonde te situas")) {
+        re.innerHTML = "Como uma Inteligência Artificial limitada, me localizo no servidor onde o site se hospeda.";
+        document.getElementById("valor").value = "";
+      } else if (p.includes("aplicativo") || p.includes("apps") || p.includes("app") || p.includes("aplicativos")&&( p.includes("JJK_programming")||p.includes("JJKprogramming")|| p.includes("site"))){
+        re.innerHTML = "O aplicativo do JJK_Programming ainda não estão disponivel, pois está em desenvolvimento.";
+        document.getElementById("valor").value = "";
+      } else if (p.includes("página principal") || p.includes("pagina principal") || p.includes("página inicial") || p.includes("pagina inicial") || p.includes("aulas") || p.includes("sistema") || p.includes("secções") || p.includes("seccão")) {
+        re.innerHTML = "A pagina principal do JJK_Programming onde você vai encontrar varias secções como: os sistemas do JJK_Programming, isto e, sistemas exclusivos e disponibilizado pelo JJK_Programming (vais encontrar o sistema de conversão, calculadora de equação, resto da divisão...), as aulas disponiveis no youTube recomendadas no JJK_Programming (aulas de HTML e CSS, Javascript(JS) e PHP) e os canais e grupos do site na seccão siga-nos.";
+        document.getElementById("valor").value = "";
+      } else if (p.includes("cadastrar se") || p.includes("entrar") || p.includes("cadastro") || p.includes("cadastrar") || p.includes("criar conta") || p.includes("iniciar se")) {
+        re.innerHTML = "Para o cadastro (criar conta) e iniciar secção basta, clicar no botão 'Solicitar conta' para cadastro e 'iniciar secção' para iniciar secção, localizada na barra de tarefas e seguir o restante dos passos.";
+        document.getElementById("valor").value = "";
+      } else
+      {
+        re.innerHTML = "Não tenho a capacidade de responder a esta questão ou reformule sua questão.";
+        document.getElementById("valor").value="";
+      }
+    }
+function fechar_menu(){
+            var suporte_menu=document.getElementById("suporte_menu");
+            suporte_menu.style.display='none';
+        }
+        var entrada1=document.getElementById("entrada1");
+        var entrada2=document.getElementById("entrada2");
+        var entrada3=document.getElementById("entrada3");
+        var entrada4=document.getElementById("entrada4");
+        var entrada5=document.getElementById("entrada5");
+        var entrada6=document.getElementById("entrada6");
+        var entrada7=document.getElementById("entrada7");
+        var entrada8=document.getElementById("entrada8");
+        var entrada9=document.getElementById("entrada9");
+        var entrada10=document.getElementById("entrada10");
+        var entrada11=document.getElementById("entrada11");
+        var submenu1=document.getElementById("submenu1");
+        var submenu2=document.getElementById("submenu2");
+        var submenu3=document.getElementById("submenu3");
+        var submenu4=document.getElementById("submenu4");
+        var submenu5=document.getElementById("submenu5");
+        var submenu6=document.getElementById("submenu6");
+        
+document.getElementById('button').addEventListener('click', function() {
+  var suporte_menu=document.getElementById("suporte_menu");
+   suporte_menu.style.display='block';
+  var menu= document.getElementById("menu");
+            if (menu.style.display === 'none' || menu.style.display === '') {
+             menu.style.display = 'block';
+                submenu1.style.display = 'none';
+                submenu2.style.display = 'none';
+                submenu3.style.display = 'none';
+                submenu4.style.display = 'none';
+                submenu5.style.display = 'none';
+            } else {
+             menu.style.display = 'none';
+            suporte_menu.style.display='none';
+            }
+        });
+        document.getElementById('menu1').addEventListener('click', function() {
+            if (submenu1.style.display === 'none' || submenu1.style.display === '' || submenu2.style.display === 'none' || submenu2.style.display === '') {
+                submenu1.style.display = 'block';
+                submenu2.style.display = 'block';
+                submenu11.style.display = 'block';
+                submenu10.style.display = 'block';
+            } else {
+                submenu1.style.display = 'none';
+                submenu2.style.display = 'none';
+                submenu11.style.display = 'none';
+                submenu10.style.display = 'none';
+            }
+        });
+        //para submenu1
+        document.getElementById("submenu1").addEventListener('click', function() {
+        if (entrada1.style.display === 'none' || entrada1.style.display === '') {
+           entrada1.style.display ='block';
+           entrada2.style.display = 'block';
+           entrada11.style.display ='block';
+           entrada10.style.display = 'block';
+            } else {
+            entrada1.style.display = 'none';
+            entrada2.style.display = 'none';
+            entrada10.style.display = 'none';
+            entrada11.style.display = 'none';
+            }
+        });
+        // para submenu2
+        document.getElementById("submenu2").addEventListener('click', function() {
+        if (entrada3.style.display === 'none' || entrada3.style.display === '') {
+             entrada3.style.display ='block';
+            entrada4.style.display = 'block';
+            entrada5.style.display = 'block';
+             entrada6.style.display = 'block';
+             entrada7.style.display = 'block';
+            } else {
+             entrada4.style.display = 'none';
+             entrada3.style.display = 'none';
+            entrada5.style.display = 'none';
+             entrada7.style.display = 'none';
+            entrada6.style.display = 'none';
+       } });
+        //para redes sociais
+        document.getElementById('menu2').addEventListener('click', function() {
+            if (submenu4.style.display === 'none' || submenu4.style.display === '' ){
+                submenu4.style.display = 'block';
+                submnu5.style.display = 'block';
+            } else {
+                submenu4.style.display = 'none';
+                submenu5.style.display = 'none';
+            }
+        });
+         submenu4.addEventListener('click', function() {
+            if (entrada8.style.display === 'none' || entrada8.style.display === '') {
+                entrada8.style.display = 'block';
+                entrada9.style.display = 'block';
+            } else {
+                entrada8.style.display = 'none';
+                entrada9.style.display = 'none';
+            }
+        });
+          document.getElementById("menu3").addEventListener('click', function() {
+        if (submenu6.style.display === 'none' ||  submenu6.style.display === '') {
+            submenu6.style.display ='block';
+            } else {
+             submenu6.style.display = 'none';
+            }
+        });
+  </script>
+</body>
+</html>
