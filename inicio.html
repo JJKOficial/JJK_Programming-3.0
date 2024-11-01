@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="icon" type="image/png" sizes="16x16" href="favicon.png">
+  <meta name="msapplication-TileColor" content="#ffffff">
+  <meta name="theme-color" content="black">
+  <title>Página inicial</title>
+  <link rel="stylesheet" href="style.css">
+<style>
+</style>
+</head>
+<body >
+  <header>     
+  <button id="button">
+         <div class="barras">
+          <div class="traco"></div>
+          <div class="traco2"></div>
+          <div class="traco3"></div>        
+        </div>
+        </button>
+         <nome style="font-size:20px;margin-left:45px;font-family:Timeszm
+          <jjk style="color:#723df7;">JJK</jjk><pro style="color:#7521dd;">_Pro</pro><gram style="color:#ac56f6;">gram</gram><ming style="color:#d46def;">ming</ming>
+        </strong>
+      </nome>
+    </nav>
+  </header>
+  <br>
+  <br>
+    <div class="picture1">
+      <h2 style="text-align:center;padding-top:150px;color:white;">Bem vindo ao JJK_Programming</h2><button style="font-family:Courier New;font-size:90%;background-color:#000;border:solid;color:#fff;border-radius:5px;height:40px;width:40%;"class="button_inicial" onclick="window.location.href ='entrar.html';"><strong>Iniciar Secção</strong></button>
+    </div>
+  <br>
+  <p class="conteudo_principal">
+    Caso não tenhas conta basta solicitares apartir da pagina oficial do JJK_Programming no facebook (<a href="https://www.facebook.com/prefile.php?id=61562231754458">ir a página</a>) ou se não quiseres criar uma conta, utilise os seguintes para entrares como conviado: email: convidado@gmail.com ou numero: 900000000 e senha: 12345.
+  </p>
+    <script>
+        document.getElementById('button').addEventListener('click', function() {
+          window.alert("Tens que iniciar secção primeiro.")
+        });
+        document.getElementById('selecionar').addEventListener('click', function() {
+            var saida= document.getElementById("saida");
+            if (saida.style.display === 'none' || saida.style.display === '') {
+             saida.style.display = 'block';
+             document.querySelector('.video').style.display = 'none';
+            } else {
+             saida.style.display = 'none';
+            }
+        });
+        function fecharVideo() {
+    var video = document.getElementById('myVideo');
+    video.pause();
+    video.currentTime = 0;
+    video.style.display = 'none';
+    document.querySelector('.video').style.display = 'none';
+  }
+    </script>
+    <footer>
+      &copy; 2024 JJK_Programming
+    </footer>
+</body>
+</html>

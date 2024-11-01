@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
+    <title>Assistente J.AI premiun</title>
+</head>
+<body>
+   <br>
+    <br>
+        <br
+    <br>
+    <br>
+    <footer class="footer">
+      <input placeholder="Escreva sua pergunta aqui." class="pergunta" id="valor"><button id="startBtn"><i class="fas fa-microphone"></i><span id="btnText" ></span></button>
+      <button class="AI" onclick="analizar()">Enviar</button>
+    </footer>
+
+    <script>
+        const API_KEY = 'SUA_CHAVE_DE_API';
+        const SEARCH_ENGINE_ID = 'SEU_ID_DO_MECANISMO_DE_BUSCA';
+
+        function analizar() {
+            const query = document.getElementById('valor').value;
+            const url = `https://www.googleapis.com/customsearch/v1?q=${encodeURIComponent(query)}&key=${API_KEY}&cx=${SEARCH_ENGINE_ID}`;
+            fetch(url)
+                .then(response => response.json())
+                .then(data => displayResults(data))
+                .catch(error => console.error('Erro:', error));
+        }
+
+        function displayResults(data) {
+            const resultsDiv = document.getElementById('results');
+            resultsDiv.innerHTML = '';
+
+            if (data.items && data.items.length > 0) {
+                data.items.forEach(item => {
+                    const result = document.createElement('div');
+                    result.innerHTML = `
+                        <h2><a href="${item.link}" target="_blank">${item.title}</a></h2>
+                        <p>${item.snippet}</p>
+                    `;
+                    resultsDiv.appendChild(result);
+                });
+            } else {
+                resultsDiv.innerHTML = '<p>Nenhum resultado encontrado.</p>';
+            }
+        }
+    </script>
+</body>
+</html>
